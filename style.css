@@ -1,0 +1,393 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fondo Estático */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Reemplaza esta URL con la ruta de tu foto de fondo */
+  background-image: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1920');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: brightness(0.5);
+  z-index: -1;
+}
+
+/* Header & Calendario */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.calendar-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 300px;
+}
+
+.calendar-header {
+  font-weight: bold;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.calendar-grid span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.calendar-grid .highlight {
+  background-color: #ff4b5c;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ff4b5c;
+}
+
+/* Secciones Generales */
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-card {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.section-card h2 {
+  font-size: 2rem;
+  color: #ffb3c1;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #ddd;
+  margin-bottom: 25px;
+}
+
+/* Sección 1: Regla Deslizante */
+.timeline-container {
+  position: relative;
+  overflow-x: auto;
+  padding: 20px 0;
+  cursor: grab;
+}
+
+.ruler-line {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 1;
+}
+
+.timeline-slider {
+  display: flex;
+  gap: 40px;
+  min-width: max-content;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+}
+
+.timeline-date {
+  font-weight: bold;
+  font-size: 0.85rem;
+  background: #ff4b5c;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.timeline-tick {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid #ff4b5c;
+}
+
+.photo-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* Sección 2: Aventuras */
+.adventures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.adventure-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  border-left: 4px solid #ff4b5c;
+}
+
+.adv-date {
+  font-size: 0.8rem;
+  color: #ffb3c1;
+  font-weight: bold;
+}
+
+.adventure-item h3 {
+  margin: 5px 0 8px;
+  font-size: 1.1rem;
+}
+
+.adventure-item p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Sección 3: Cronómetro */
+.timer-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.time-block {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 15px 20px;
+  border-radius: 10px;
+  min-width: 80px;
+}
+
+.time-block span {
+  font-size: 2.2rem;
+  font-weight: bold;
+  display: block;
+}
+
+.time-block p {
+  font-size: 0.8rem;
+  color: #ddd;
+}
+
+/* ===== Sobre / Carta ===== */
+.letter-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.envelope {
+  position: relative;
+  width: 160px;
+  height: 110px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.06);
+}
+
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #ff6b81, #ff4b5c);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(255, 75, 92, 0.4);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 80px solid transparent;
+  border-right: 80px solid transparent;
+  border-top: 55px solid #d63447;
+  z-index: 2;
+}
+
+.envelope-heart {
+  font-size: 2.2rem;
+  z-index: 1;
+  animation: pulseHeart 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ===== Lluvia / Estallido de corazones ===== */
+.hearts-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -10%;
+  font-size: 1.8rem;
+  opacity: 0;
+  animation: floatUp 2.5s ease-in forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(var(--drift, 0px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== Pergamino / Dedicatoria ===== */
+.scroll-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.scroll-backdrop.active {
+  display: flex;
+}
+
+.scroll-modal {
+  background: linear-gradient(#fdf1dc, #f3e2bd);
+  color: #4a3418;
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 40px 35px;
+  position: relative;
+  box-shadow:
+    0 0 0 6px #d8b673,
+    0 0 0 8px #4a3418,
+    0 20px 50px rgba(0, 0, 0, 0.6);
+  transform: scale(0.3) rotateX(40deg);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.scroll-modal.open {
+  transform: scale(1) rotateX(0deg);
+  opacity: 1;
+}
+
+.scroll-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #a12c3d;
+  letter-spacing: 2px;
+}
+
+.scroll-text {
+  font-family: 'Georgia', serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.scroll-close {
+  position: sticky;
+  top: 0;
+  display: block;
+  margin: 0 auto 15px;
+  background: #a12c3d;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.scroll-close:hover {
+  background: #7e2130;
+}
